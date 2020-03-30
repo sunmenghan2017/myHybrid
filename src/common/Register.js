@@ -9,6 +9,7 @@ export default class Register extends Component {
 		this.state = {
 			username: '',
 			pwd: '',
+                        isRegister:false
 		}
 	}
 	userhandle = (text) => {
@@ -18,7 +19,7 @@ export default class Register extends Component {
 		this.setState({ pwd: text })
 	}
 	register = () => {
-		this.setState({ isLoading: true })
+		this.setState({ isRegister: true })
 		myFetch.post('/register',
 			{
 				username: this.state.username,
