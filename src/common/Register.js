@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Image, TextInput, AsyncStorage, TouchableOpacity, ToastAndroid } from 'react-native';
 import { Icon } from '@ant-design/react-native';
+import Icon1 from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
 import { myFetch } from '../utils'
 export default class Register extends Component {
@@ -9,6 +10,7 @@ export default class Register extends Component {
 		this.state = {
 			username: '',
 			pwd: '',
+			isRegister:false
 		}
 	}
 	userhandle = (text) => {
@@ -18,7 +20,7 @@ export default class Register extends Component {
 		this.setState({ pwd: text })
 	}
 	register = () => {
-		this.setState({ isLoading: true })
+		this.setState({ isRegister: true })
 		myFetch.post('/register',
 			{
 				username: this.state.username,
@@ -26,7 +28,6 @@ export default class Register extends Component {
 			}).then(res => {
 				AsyncStorage.setItem('user', JSON.stringify(res.data))
 					.then(() => {
-						console.log(res.data);
 						ToastAndroid.show('注册成功', 1000);
 						setTimeout(() => Actions.login(), 2000)
 					})
@@ -34,9 +35,18 @@ export default class Register extends Component {
 	}
 	render() {
 		return (
-			<View style={{ flex: 1, justifyContent: 'center' }}>
+			<View style={{ flex: 1}}>
+				<View style={{flexDirection:'row',height:'10%',width:'90%',marginTop:'5%',marginBottom:'15%'}}>
+					<TouchableOpacity onPress={() => Actions.login()} style={{flexDirection:'row', left: '5%'}} >
+						<Icon1 
+                                name="angle-left" 
+								style={{color:'gray',fontSize:20,paddingRight:'5%'}}
+                        />
+						<Text style={{ fontSize: 16, color: "blue" }}>返回登录页</Text>
+					</TouchableOpacity>
+				</View>
 				<View
-					style={{ alignItems: 'center' }}>
+					style={{ alignItems: 'center',justifyContent:'center',height:'40%' }}>
 					<View
 						style={{
 							width: '80%',

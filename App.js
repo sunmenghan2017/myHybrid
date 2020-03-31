@@ -64,33 +64,23 @@ const App = () => {
 		<Router
 			//引导页
 			backAndroidHandler={()=>{
-				// if(Actions.currentScene != 'home'){
-				// 	Actions.pop();
-				// 	return true;
-				// }else{
-				// 	if(new Date().getTime()-now<2000){
-				// 		BackHandler.exitApp();
-				// 	}else{
-				// 		ToastAndroid.show('确定要退出吗',100);
-				// 		now = new Date().getTime();
-				// 		return true;
-				// 	}
-				// }
+				
 				if (Actions.currentScene == "login") {
 					if (new Date().getTime() - now < 2000) {
 						BackHandler.exitApp();
+						return false;
 					} else {
 						ToastAndroid.show('确定要退出吗', 100);
 						now = new Date().getTime();
 						return true;
 					}
-					return true;
-				} else if (Actions.currentScene == "home") {
-					ToastAndroid.show('这是首页,请退出登录', 100);
-					Actions.homePage();
+				} 
+				if (Actions.currentScene != "home") {
+					Actions.pop();
 					return true;
 				} else {
-					Actions.pop();
+					ToastAndroid.show('这是首页,请退出登录', 100);
+					Actions.homePage();
 					return true;
 				}
 			}}

@@ -11,8 +11,11 @@ import { Actions } from 'react-native-router-flux';
 const {width} = Dimensions.get('window')
 const s = width / 640;
 const options = {
-    title: 'Select Avatar',
-    customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
+    title: '选择头像',
+    takePhotoButtonTitle: '拍照', 
+    chooseFromLibraryButtonTitle: '从图库选择照片',
+    customButtons: [{ name: 'fb', title: '从Facebook选择照片' }],
+    cancelButtonTitle: '取消',
     storageOptions: {
       skipBackup: true,
       path: 'images',
@@ -230,7 +233,7 @@ export default class Userinfor extends Component {
                     {/* <TouchableOpacity>
                         <Text style={{marginTop:30*s,marginBottom:40*s,textAlign:'center',color:'gray'}}>BINNU DHILLON | 退出</Text>
                     </TouchableOpacity> */}
-                    <TouchableOpacity onPress={()=>{AsyncStorage.clear();Actions.login()}}>
+                    <TouchableOpacity onPress={()=>{AsyncStorage.removeItem('user');Actions.login()}}>
                         <Text style={{marginTop:30*s,marginBottom:40*s,textAlign:'center',color:'gray'}}>退出</Text>
                     </TouchableOpacity>
                 </View>
