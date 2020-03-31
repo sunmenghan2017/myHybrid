@@ -10,7 +10,11 @@ export default class Register extends Component {
 		this.state = {
 			username: '',
 			pwd: '',
+<<<<<<< HEAD
 			isRegister:false
+=======
+                        isRegister:false
+>>>>>>> 4be8b62a828fd719fedd195283dda2971aa52f3c
 		}
 	}
 	userhandle = (text) => {
